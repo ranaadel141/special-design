@@ -255,3 +255,26 @@ document.querySelector(".reset-option").onclick = function () {
 //toggle menu
 let toggleBtn = document.querySelector(".toggle-menu");
 let tLinks = document.querySelector(".links");
+toggleBtn.onclick = function () {
+  this.classList.toggle("menu-active");
+  tLinks.classList.toggle("open");
+}
+//click anywhere outside menu and toggle button
+document.addEventListener("click", (e) => {
+  
+  // console.log(e.target);
+  if (e.target !== toggleBtn && e.target !== tLinks) {
+    console.log("this is outside menu and toggle button");
+    if (tLinks.classList.contains("open")) {
+      toggleBtn.classList.toggle("menu-active");
+      tLinks.classList.toggle("open");
+    }
+
+  }
+});
+//stop propagation on menu
+tLinks.onclick = function (e) {
+  e.stopPropagation();
+}
+
+
